@@ -19,3 +19,5 @@ En cada push a `main` se ejecuta:
 - Maven
 - Docker
 - GitHub Actions
+
+Docker Hub integrado 🚀
