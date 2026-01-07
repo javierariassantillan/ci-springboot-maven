@@ -2,22 +2,31 @@ name: CI Spring Boot
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 17
+          java-version: "17"
+          cache: maven
 
       - name: Give execute permission to mvnw
         run: chmod +x mvnw
 
       - name: Build & Test
         run: ./mvnw clean verify
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: springboot-jar
+          path: target/*.jar
