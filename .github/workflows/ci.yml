@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -22,7 +21,3 @@ jobs:
 
       - name: Build & Test
         run: ./mvnw clean verify
-
-      - name: Build Docker image
-        run: docker build -t myapp:latest .
-
